@@ -1,49 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>H5P Standalone Player</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- H5P Standalone CSS -->
-  <link rel="stylesheet" href="dist/styles/frame.bundle.css">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      font-family: sans-serif;
-    }
-
-    /* Responsive H5P container */
-    #h5p-container {
-      width: 100%;
-      max-width: 100%;   /* allow full width */
-      margin: 0 auto;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-
-    /* Ensure iframe content inside H5P scales */
-    .h5p-iframe {
-      width: 100% !important;
-      height: auto !important;
-    }
-  </style>
-</head>
-<body>
-  <div id="h5p-container"></div>
-
-  <!-- H5P Standalone Scripts -->
-  <script src="dist/frame.bundle.js"></script>
-  <script src="dist/main.bundle.js"></script>
-
-  <script>
-    new H5PStandalone.H5P(document.getElementById('h5p-container'), {
-      h5pJsonPath: "workspace", // folder containing h5p.json, content/, libraries/
-      frame: true
-    });
-  </script>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Truth Seeker</title>
+    <!-- Source for the main script must point to the dist folder -->
+    <script type="text/javascript" src="dist/main.bundle.js"></script> 
+  </head>
+  <body>
+    <div id='h5p-container'></div>
+    <script type="text/javascript">
+      const el = document.getElementById('h5p-container');
+      const options = {
+        // Path to the content folder must point exactly to 'workspace'
+        h5pJsonPath:   'workspace', 
+        librariesPath: 'workspace/libraries',
+        frameJs:       'dist/frame.bundle.js', 
+        frameCss:      'dist/styles/h5p.css', 
+      }
+      new H5PStandalone.H5P(el, options);
+    </script>
+  </body>
 </html>
