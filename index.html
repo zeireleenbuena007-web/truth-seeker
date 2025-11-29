@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My H5P Content</title>
+    <!-- Include the H5P player main script -->
+    <script type="text/javascript" src="dist/main.bundle.js"></script>
+</head>
+<body>
+    <!-- The div where the H5P content will be rendered -->
+    <div id="h5p-container"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        const el = document.getElementById('h5p-container');
+        const options = {
+          // This path points to the 'content' folder inside your 'workspace' folder
+          h5pJsonPath: 'workspace/content', 
+          frameJs: 'dist/frame.bundle.js',
+          frameCss: 'dist/styles/h5p.css',
+        };
+        new H5PStandalone.H5P(el, options);
+      });
+    </script>
+</body>
+</html>
