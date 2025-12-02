@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Truth Seeker</title>
-  
-  <base href="/truth-seeker/">
-  
   <script type="text/javascript" src="dist/main.bundle.js"></script>
 </head>
 <body>
@@ -13,25 +10,25 @@
 <div id="h5p-container"></div>
 
 <script type="text/javascript">
-  // 1. Get the container element
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // FIX: All paths are now relative to the <base> tag's URL (/truth-seeker/)
-    // This tells the H5P player where h5p.json is located: /truth-seeker/workspace/h5p.json
-    h5pJsonPath: 'workspace/',
+    // FIX 1: Set h5pJsonPath to the absolute web path of the workspace folder.
+    // This tells the player exactly where to find /truth-seeker/workspace/h5p.json
+    h5pJsonPath: '/truth-seeker/workspace/',
     
-    // Path to libraries, relative to the <base> tag's URL: /truth-seeker/workspace/libraries
-    librariesPath: 'workspace/libraries', 
+    // FIX 2: Set librariesPath to the absolute web path.
+    librariesPath: '/truth-seeker/workspace/libraries', 
     
-    // Dist files are relative to the <base> tag's URL
+    // FIX 3: Set baseUrl to the absolute web path of the workspace folder.
+    // This ensures media files are prefixed with the correct hostname/path.
+    baseUrl: '/truth-seeker/workspace/',
+
+    // Dist files are relative to index.html
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
-    
-    // NOTE: The 'baseUrl' option is REMOVED because the <base> tag handles it.
   };
 
-  // 4. Initialize H5P
   new H5PStandalone.H5P(el, options);
 </script>
 
