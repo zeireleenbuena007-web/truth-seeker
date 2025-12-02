@@ -14,15 +14,14 @@
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // Path to h5p.json and the content/ folder, relative to the index.html
-    h5pJsonPath: 'workspace/',
+    // *** FIX 1: Set h5pJsonPath to a single dot, 
+    // expecting baseUrl to handle the 'workspace' part. ***
+    h5pJsonPath: '.',
     
-    // *** THE CRITICAL FIX FOR YOUR GITHUB PAGES REPO ***
-    // This tells the H5P player to prepend '/truth-seeker/' to all content paths,
-    // which resolves the 'ERR_NAME_NOT_RESOLVED' issue.
-    baseUrl: '/truth-seeker/',
+    // The baseUrl remains the correct fix for the GitHub Project Site.
+    baseUrl: '/truth-seeker/workspace/', // NOTICE: I ADDED 'workspace/' HERE
 
-    // Other paths remain the same
+    // The libraries path must also be relative to the index.html
     librariesPath: 'workspace/libraries', 
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
