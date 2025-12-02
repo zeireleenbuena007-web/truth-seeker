@@ -14,14 +14,16 @@
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // *** FIX 1: Set h5pJsonPath to a single dot, 
-    // expecting baseUrl to handle the 'workspace' part. ***
-    h5pJsonPath: '.',
+    // FIX 1: This path must be relative to index.html to find h5p.json
+    // and the content/ folder correctly.
+    h5pJsonPath: 'workspace/',
     
-    // The baseUrl remains the correct fix for the GitHub Project Site.
-    baseUrl: '/truth-seeker/workspace/', // NOTICE: I ADDED 'workspace/' HERE
+    // FIX 2: This is the absolute path component that your H5P player 
+    // needs to correctly build the full URL for media files on GitHub Pages.
+    // It includes the repository name AND the 'workspace/' folder.
+    baseUrl: '/truth-seeker/workspace/',
 
-    // The libraries path must also be relative to the index.html
+    // Other paths remain the same, relative to index.html
     librariesPath: 'workspace/libraries', 
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
