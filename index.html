@@ -10,27 +10,24 @@
 <div id="h5p-container"></div>
 
 <script type="text/javascript">
-  // 1. Get the container element
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // FIX 1: This path MUST include 'workspace/' to find h5p.json relative to index.html.
+    // FIX 1: Path to h5p.json, relative to index.html (Fixes h5p.json 404)
     h5pJsonPath: 'workspace/',
     
-    // FIX 2: Set the baseUrl to the absolute web path of the H5P content folder.
-    // This should resolve the ERR_NAME_NOT_RESOLVED by completing the URL.
-    // Leading and trailing slashes are crucial!
-    baseUrl: '/truth-seeker/workspace/',
-
-    // FIX 3: Libraries path is now relative to the baseUrl (or h5pJsonPath)
-    librariesPath: 'libraries', 
+    // FIX 2: Path to libraries, relative to index.html (Fixes library 404)
+    librariesPath: 'workspace/libraries', 
     
+    // FIX 3: Set baseUrl to the REPOSITORY ROOT. H5P should combine this
+    // with the 'workspace/content/' path found inside your h5p.json file.
+    baseUrl: '/truth-seeker/',
+
     // Dist files are relative to index.html
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
   };
 
-  // 4. Initialize H5P
   new H5PStandalone.H5P(el, options);
 </script>
 
