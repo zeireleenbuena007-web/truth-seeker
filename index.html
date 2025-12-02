@@ -14,17 +14,18 @@
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // FIX 1: This path must be relative to index.html to find h5p.json
-    // and the content/ folder correctly.
+    // FIX 1: This path MUST include 'workspace/' to find h5p.json relative to index.html.
     h5pJsonPath: 'workspace/',
     
-    // FIX 2: This is the absolute path component that your H5P player 
-    // needs to correctly build the full URL for media files on GitHub Pages.
-    // It includes the repository name AND the 'workspace/' folder.
+    // FIX 2: Set the baseUrl to the absolute web path of the H5P content folder.
+    // This should resolve the ERR_NAME_NOT_RESOLVED by completing the URL.
+    // Leading and trailing slashes are crucial!
     baseUrl: '/truth-seeker/workspace/',
 
-    // Other paths remain the same, relative to index.html
-    librariesPath: 'workspace/libraries', 
+    // FIX 3: Libraries path is now relative to the baseUrl (or h5pJsonPath)
+    librariesPath: 'libraries', 
+    
+    // Dist files are relative to index.html
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
   };
