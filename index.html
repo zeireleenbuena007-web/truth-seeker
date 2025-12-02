@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Truth Seeker</title>
-    <!-- Source for the main script must point to the dist folder -->
-    <script type="text/javascript" src="dist/main.bundle.js"></script> 
-  </head>
-  <body>
-    <div id='h5p-container'></div>
-    <script type="text/javascript">
-      const el = document.getElementById('h5p-container');
-      const options = {
-        // Path to the content folder must point exactly to 'workspace'
-        h5pJsonPath:   'workspace', 
-        librariesPath: 'workspace/libraries',
-        frameJs:       'dist/frame.bundle.js', 
-        frameCss:      'dist/styles/h5p.css', 
-      }
-      new H5PStandalone.H5P(el, options);
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Truth Seeker</title>
+  <script type="text/javascript" src="dist/main.bundle.js"></script>
+</head>
+<body>
+
+<div id="h5p-container"></div>
+
+<script type="text/javascript">
+  // 1. Get the container element where the H5P content will load
+  const el = document.getElementById('h5p-container');
+
+  const options = {
+    // This is the CRITICAL fix: it correctly points to the 'workspace' folder
+    // where h5p.json, libraries/, and content/ are located.
+    h5pJsonPath: 'workspace/',
+    
+    // These paths point to the H5P player components inside the 'dist' folder
+    // and the libraries inside 'workspace'.
+    librariesPath: 'workspace/libraries', 
+    frameJs: 'dist/frame.bundle.js',
+    frameCss: 'dist/styles/h5p.css'
+  };
+
+  // 3. Initialize H5P content using the H5PStandalone library
+  new H5PStandalone.H5P(el, options);
+</script>
+
+</body>
 </html>
