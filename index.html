@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Truth Seeker</title>
+  
+  <base href="/truth-seeker/">
+  
   <script type="text/javascript" src="dist/main.bundle.js"></script>
 </head>
 <body>
@@ -10,24 +13,25 @@
 <div id="h5p-container"></div>
 
 <script type="text/javascript">
+  // 1. Get the container element
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // FIX 1: Path to h5p.json, relative to index.html (Fixes h5p.json 404)
+    // FIX: All paths are now relative to the <base> tag's URL (/truth-seeker/)
+    // This tells the H5P player where h5p.json is located: /truth-seeker/workspace/h5p.json
     h5pJsonPath: 'workspace/',
     
-    // FIX 2: Path to libraries, relative to index.html (Fixes library 404)
+    // Path to libraries, relative to the <base> tag's URL: /truth-seeker/workspace/libraries
     librariesPath: 'workspace/libraries', 
     
-    // FIX 3: Set baseUrl to the REPOSITORY ROOT. H5P should combine this
-    // with the 'workspace/content/' path found inside your h5p.json file.
-    baseUrl: '/truth-seeker/',
-
-    // Dist files are relative to index.html
+    // Dist files are relative to the <base> tag's URL
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
+    
+    // NOTE: The 'baseUrl' option is REMOVED because the <base> tag handles it.
   };
 
+  // 4. Initialize H5P
   new H5PStandalone.H5P(el, options);
 </script>
 
