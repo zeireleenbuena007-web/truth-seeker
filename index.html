@@ -10,22 +10,25 @@
 <div id="h5p-container"></div>
 
 <script type="text/javascript">
-  // 1. Get the container element where the H5P content will load
+  // 1. Get the container element
   const el = document.getElementById('h5p-container');
 
   const options = {
-    // This is the CRITICAL fix: it correctly points to the 'workspace' folder
-    // where h5p.json, libraries/, and content/ are located.
+    // Path to h5p.json and the content/ folder, relative to the index.html
     h5pJsonPath: 'workspace/',
     
-    // These paths point to the H5P player components inside the 'dist' folder
-    // and the libraries inside 'workspace'.
+    // *** THE CRITICAL FIX FOR YOUR GITHUB PAGES REPO ***
+    // This tells the H5P player to prepend '/truth-seeker/' to all content paths,
+    // which resolves the 'ERR_NAME_NOT_RESOLVED' issue.
+    baseUrl: '/truth-seeker/',
+
+    // Other paths remain the same
     librariesPath: 'workspace/libraries', 
     frameJs: 'dist/frame.bundle.js',
     frameCss: 'dist/styles/h5p.css'
   };
 
-  // 3. Initialize H5P content using the H5PStandalone library
+  // 4. Initialize H5P
   new H5PStandalone.H5P(el, options);
 </script>
 
